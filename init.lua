@@ -762,7 +762,8 @@ require('lazy').setup({
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
-        local disable_filetypes = { c = true, cpp = true }
+        -- yaml/helm/terraform: RA repos don't enforce a format, so don't reformat whole files on save
+        local disable_filetypes = { c = true, cpp = true, yaml = true, helm = true, terraform = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         else
